@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from rest_framework.views import APIView
 from rest_framework.response import Response 
+from rest_framework import generics
 
 from .models import Booking, Menu 
 from .serializers import bookingSerializer, menuSerializer
@@ -11,7 +12,7 @@ def index(request):
 
 
 
-class bookingView(APIView):
+class bookingView(generics.ListCreateAPIView):
 
     def get(self, request):
         items = Booking.objects.all 
@@ -19,10 +20,12 @@ class bookingView(APIView):
         return Response(serializer.data)  # Returns a json format data
     
 
-class menuView(APIView):
+class menuView(generics.ListCreateAPIView):
+    queryset = Menu.objects.all 
+    serializer_class = menuSerializer
 
-    def get(self, request):
-        items = Menu.objects.all 
-        serializer= menuSerializer(items, many=True)
-        return Response(serializer.data)
+class SingleMenuItemView(generics.RetrieveUpdateAPIView, generics.DestroyAPIView):
+    queryset = Menu.objects.all()
+    serializer_class = menuSerializer
+
     
