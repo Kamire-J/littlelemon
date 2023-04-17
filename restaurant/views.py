@@ -1,5 +1,5 @@
-from django.shortcuts import HttpResponse
+from django.shortcuts import render
 
 # App views
-def say_hello(request):
-    return HttpResponse("Hey Jack!")
+def index(request):
+    return render(request, 'index.html', {})
