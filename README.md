@@ -10,3 +10,6 @@ The owners of the Little Lemon restaurant have hired you to build two APIs. One 
 You need to build the Table booking API to facilitate reserving a table for dining in the restaurant on a specific date and for a certain number of people.
 
 
+# Api routes
+api/menu-items/
+api/booking/
