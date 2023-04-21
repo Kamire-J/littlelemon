@@ -13,13 +13,13 @@ from .serializers import bookingSerializer, menuSerializer
 def index(request):
     return render(request, 'index.html', {})
 
-@api_view()
-@permission_classes([IsAuthenticated])
+# @api_view()
+# @permission_classes([IsAuthenticated])
 def test_message(request):
     return Response({"message":"This view is protected."})
 
 class menuView(generics.ListCreateAPIView):
-    permission_classes = [IsAuthenticated]
+    # permission_classes = [IsAuthenticated]
     queryset = Menu.objects.all 
     serializer_class = menuSerializer
 
@@ -29,7 +29,7 @@ class SingleMenuItemView(generics.RetrieveUpdateAPIView, generics.DestroyAPIView
 
 
 class bookingView(viewsets.ModelViewSet):
-    permission_classes = [IsAuthenticated]
+    # permission_classes = [IsAuthenticated]
     queryset = Booking.objects.all()
     serializer_class = bookingSerializer
 
